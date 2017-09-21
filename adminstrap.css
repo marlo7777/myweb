@@ -85,15 +85,15 @@ body{
 }
 
 .breadcrumb{
-	background:#cccccc;
-	color:#333333;
-	margin-top:10px;
+	background:#cccccc !important;
+	color:#333333 !important;
+	margin-top:10px !important;
 
 }
 
 .breadcrumb a
  {
- 	color:#333333;
+ 	color:#333333 !important;
  }
 
 
@@ -111,11 +111,11 @@ body{
 }
 
 #footer{
-	background:#333;
-	color:white;
-	text-align: center;
-	padding:30px;
-	maargin-top:30px;
+	background:#333 !important;
+	color:white !important;
+	text-align: center !important;
+	padding:30px !important;
+	maargin-top:30px !important;
 }
 
 
