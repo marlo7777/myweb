@@ -73,7 +73,7 @@ body{
 .main-color-bg{
 	background-color:#e74c3c !important;
 	border-color:#c0392b !important;
-	color:white;
+	color:white !important;
 
 }
 
@@ -84,11 +84,52 @@ body{
 
 }
 
+.breadcrumb{
+	background:#cccccc;
+	color:#333333;
+	margin-top:10px;
+
+}
+
+.breadcrumb a
+ {
+ 	color:#333333;
+ }
 
 
 .dropdown{
 	padding-top:20px;
 }
+
+.progress-bar{
+	background:#333;
+	color:white;
+}
+
+.dash-box{
+	text-align: center;
+}
+
+#footer{
+	background:#333;
+	color:white;
+	text-align: center;
+	padding:30px;
+	maargin-top:30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
