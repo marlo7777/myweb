@@ -1,62 +1,105 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-   <link rel="stylesheet" type="text/css" href="css/navbar-dropdown.css">
-   <link rel="stylesheet" type="text/css" href="css/animate.min.css">
-   <link rel="stylesheet" type="text/css" href="css/bootstrap-dropdownhover.min.css">
-   <link rel="stylesheet" type="text/css" href="font-awesome.css">
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css"> 
-   <title>Navbar-Dropdown</title>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-   <script src="js/bootstrap-dropdownhover.min.js"></script>
-   <script src="js/bootstrap.min.js"></script>
-
+  <title>UploadMultipleImages</title>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 
- <nav class="navbar navbar-default " role="navigation">
-        <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-animations">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a href="index.html" class="navbar-brand">Company-Name</a>
-          </div>
+	<input type="file" class="fileinput" id="fileInput" multiple accept="image/x-png,image/gif,image/jpeg">
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-animations" data-hover="dropdown">
-           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Dashboard</a></li>
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-           </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User-Name <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                 <li><a href="#">My profil</a></li>
-                 <li><a href="#">Settings</a></li>
-                 <li><a href="#">Logout</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-
-        </div><!-- /.container-fluid -->
-      </nav>
+	<div class="container">
+		<div class="col-md-6">
+			 <div class="panel panel-default">
+			  <div class="panel-heading text-center">
+			    <div class="btn-group btn-group-justified">
+				  <a href="#" class="btn btn-default" id="fake">Browse</a>
+				  <a href="#" class="btn btn-danger">Upload</a>
+				</div>
+			  </div>
+			  <div class="panel-body">
+			  	<div class="col-md-12">
+			  	  <ul id="list" class="list-group"></ul>
+			  	</div>
+			  </div> 
+            </div>
+		</div>
+	</div>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 </html>
+
+<script type="text/javascript">
+
+	//fake browse
+
+	$("#fake").click(function(){
+         $("#fileInput").click();
+	});
+
+  
+	var itemList = document.getElementById("list");
+	var countUploaded=0;
+	
+	//events
+	$("#fileInput").on("change",loadFiles);
+	itemList.addEventListener("click",removeItem);
+
+
+	//functions
+     
+     function loadFiles(){
+     var fileInput = $("#fileInput").get(0).files;
+     var count=fileInput.length;
+     for(var i =0 ; i<count;i++){
+     	var reader = new FileReader();
+     	reader.onload=function(e){
+        $("#list").append('<li class="list-group-item"><img class="img-thumbnail" width=100 height=100 src='+e.target.result+'>'+'<button class="btn btn-danger btn-sm delete">X'+'</button>'+'<li>');
+
+     	}
+
+          reader.readAsDataURL(fileInput[i]);
+     }
+
+    }
+
+    function removeItem(e){
+    	if(e.target.classList.contains('delete')){
+    		if(confirm('Are You Sure?')){
+    			var li = e.target.parentElement;
+    			itemList.removeChild(li);
+
+    		}
+    	}
+
+    }
+
+
+
+</script>
+
+<style type="text/css">
+ .fileinput{
+ 	display: none !important;
+ }
+
+ .delete{
+ 	float:right !important;
+ 	margin-top:25px !important;
+ }
+
+ li{
+ 	list-style-type: none !important;
+ 	background: #f4f4f4 !important;
+ }
+
+ .panel-body{
+ 		background: #f4f4f4 !important;
+ }
+
+
+</style>
